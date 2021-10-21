@@ -1,4 +1,4 @@
-package com.google.codelab.photos.sharing
+package dev.ankan.photos.sharing
 
 import io.flutter.embedding.android.FlutterActivity
 

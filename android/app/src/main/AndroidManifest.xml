@@ -15,7 +15,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.codelab.photos.sharing">
+    package="dev.ankan.photos.sharing">
    <application
         android:label="Field Trippa"
         android:icon="@mipmap/ic_launcher">
