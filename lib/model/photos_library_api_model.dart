@@ -21,6 +21,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sharing_codelab/photos_library_api/album.dart';
 import 'package:sharing_codelab/photos_library_api/batch_create_media_items_response.dart';
+import 'package:sharing_codelab/photos_library_api/create_album_request.dart';
 import 'package:sharing_codelab/photos_library_api/join_shared_album_request.dart';
 import 'package:sharing_codelab/photos_library_api/get_album_request.dart';
 import 'package:sharing_codelab/photos_library_api/join_shared_album_response.dart';
@@ -76,9 +77,10 @@ class PhotosLibraryApiModel extends Model {
   Future<void> signOut() => _googleSignIn.disconnect();
 
   Future<Album?> createAlbum(String title) async {
-    // TODO(codelab): Implement this call.
-
-    return null;
+    final album =
+        await client!.createAlbum(CreateAlbumRequest.fromTitle(title));
+    updateAlbums();
+    return album;
   }
 
   Future<Album> getAlbum(String id) async =>
