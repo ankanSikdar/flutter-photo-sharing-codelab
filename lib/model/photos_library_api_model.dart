@@ -18,8 +18,10 @@ import 'dart:collection';
 import 'dart:io';
 
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:sharing_codelab/photos_library_api/album.dart';
+import 'package:sharing_codelab/photos_library_api/batch_create_media_items_request.dart';
 import 'package:sharing_codelab/photos_library_api/batch_create_media_items_response.dart';
 import 'package:sharing_codelab/photos_library_api/create_album_request.dart';
 import 'package:sharing_codelab/photos_library_api/join_shared_album_request.dart';
@@ -110,14 +112,17 @@ class PhotosLibraryApiModel extends Model {
 
   Future<BatchCreateMediaItemsResponse?> createMediaItem(
       String uploadToken, String? albumId, String? description) async {
-    // TODO(codelab): Implement this method.
-
-    return null;
-
     // Construct the request with the token, albumId and description.
+    final request =
+        BatchCreateMediaItemsRequest.inAlbum(uploadToken, albumId, description);
 
     // Make the API call to create the media item. The response contains a
     // media item.
+    final response = await client!.batchCreateMediaItems(request);
+
+    // Print and return the response.
+    print(response.newMediaItemResults?[0].toJson());
+    return response;
   }
 
   UnmodifiableListView<Album> get albums =>
