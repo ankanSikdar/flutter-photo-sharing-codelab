@@ -140,18 +140,16 @@ class PhotosLibraryApiModel extends Model {
       return;
     }
 
-    // Add albums from the user's Google Photos account
-    var ownedAlbums = await _loadAlbums();
-    if (ownedAlbums != null) {
-      _albums.addAll(ownedAlbums);
-    }
+    // // Add albums from the user's Google Photos account
+    // var ownedAlbums = await _loadAlbums();
+    // if (ownedAlbums != null) {
+    //   _albums.addAll(ownedAlbums);
+    // }
 
-    /*
     // Load albums from owned and shared albums
     final list = await Future.wait([_loadSharedAlbums(), _loadAlbums()]);
 
     _albums.addAll(list.expand((a) => a ?? []));
-    */
 
     notifyListeners();
     hasAlbums = true;
